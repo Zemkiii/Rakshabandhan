@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Raksha Bandhan Diii 🎁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Indie Flower', cursive;
+      background: linear-gradient(to bottom right, #fff8e1, #ffe0b2);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      color: #5d4037;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #ffcc80;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+    }
+
+    .light {
+      position: absolute;
+      width: 50px;
+      height: auto;
+      top: -10px;
+      animation: swing 3s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes swing {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .left-light { left: 10px; }
+    .right-light { right: 10px; }
+
+    .section { padding: 2rem 1rem; }
+
+    .poem, .quote {
+      background: #fff3e0;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .poem:hover, .quote:hover { transform: scale(1.02); }
+
+    .rakhi-art {
+      display: none; /* hidden initially */
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .rakhi-art img {
+      width: 200px;
+      max-width: 80%;
+      height: auto;
+    }
+
+    .interactive-box {
+      background: #ffe082;
+      padding: 1rem;
+      margin: 2rem auto;
+      max-width: 500px;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .interactive-box:hover { background-color: #ffd54f; }
+
+    .hidden-message {
+      display: none;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: confetti-fall 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(200px) rotate(360deg); opacity: 0; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #8d6e63;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .light { width: 35px; }
+      .interactive-box { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="lonthon.png" alt="light" class="light left-light" />
+    <h1>💖 Happy Raksha Bandhan 💖</h1>
+    <img src="lonthon.png" alt="light" class="light right-light" />
+    <p>A special gift wrapped in code, just for you!</p>
+  </header>
+
+  <section class="section">
+    <div class="poem">
+      <h2>🌸 Poem for You 🌸</h2>
+      <p>Through fights and fun, we always stand,<br>
+      Like threads of rakhi, strong and grand.<br>
+      Your care's a hug, your scold a guide,<br>
+      In every storm, you're by my side.</p>
+    </div>
+
+    <div class="quote">
+      <h2>✨ Click for a Random Quote ✨</h2>
+      <button onclick="showQuote()">Get Quote</button>
+      <p id="quote-box">❤️</p>
+    </div>
+
+    <div class="interactive-box" onclick="revealMessage(this)">
+      Tie your Rakhi to your lil Quackyy !! 💌
+      <div class="hidden-message" id="message">
+        You're the chaos I love and the calm I need. Happy Rakhi! (Most Generous and Precious thread Acquiredd !!)
+      </div>
+    </div>
+
+    <div class="rakhi-art" id="rakhi-art">
+      <img src="rakhii.jpg" alt="Rakhi Art" />
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ by your sibling (and a little help from ChatGPT)
+  </footer>
+
+  <script>
+    const quotes = [
+      "Siblings: the only enemy you can't live without!",
+      "You annoy me more than anyone, but I love you even more than that.",
+      "Rakhi isn't just a thread, it's a bond woven in love.",
+      "You're part-time annoying, full-time precious.",
+      "Our bond is tighter than mom’s Tupperware lid."
+    ];
+
+    function showQuote() {
+      const box = document.getElementById("quote-box");
+      const quote = quotes[Math.floor(Math.random() * quotes.length)];
+      box.innerText = quote;
+    }
+
+    function revealMessage(box) {
+      document.getElementById("message").style.display = 'block';
+      document.getElementById("rakhi-art").style.display = 'flex'; // Show rakhi image
+      triggerConfetti(box);
+    }
+
+    function triggerConfetti(container) {
+      for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * container.offsetWidth + "px";
+        confetti.style.top = "0px";
+        confetti.style.backgroundColor = getRandomColor();
+        container.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 1000);
+      }
+    }
+
+    function getRandomColor() {
+      const colors = ["#ff4081", "#ff9800", "#ffd740", "#7c4dff", "#00bcd4"];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
